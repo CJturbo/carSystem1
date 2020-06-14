@@ -85,4 +85,16 @@ public class CarController {
         carService.insertCar(car);
         return JSONResult.ok();
     }
+
+    /**
+     * 模糊查询接口
+     *
+     * @param carName, pageNum, pageSize
+     * @return
+     */
+    @GetMapping("findCar/{carName}/{pageNum}/{pageSize}")
+    public JSONResult findCars(@PathVariable String carName, @PathVariable int pageNum, @PathVariable int pageSize) {
+        List<Car> cars = carService.findCars(carName, pageNum, pageSize);
+        return JSONResult.ok(cars);
+    }
 }

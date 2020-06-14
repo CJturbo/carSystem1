@@ -25,4 +25,7 @@ public interface CarDao {
 
     @Insert("insert into carMessage(carName,carType,price,carSeries) values(#{carName},#{carType},#{price},#{carSeries})")
     void insertCar(Car car);
+
+    @Select("select * from carMessage where carName like concat('%',#{carName},'%') ORDER BY id ASC LIMIT #{limitStart},#{limitSize}")
+    List<Car> findCars(String carName, int limitStart, int limitSize);
 }
